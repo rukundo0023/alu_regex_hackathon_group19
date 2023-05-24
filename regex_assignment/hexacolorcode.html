@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexadecimal color</title>
+    <style>
+        .textbox {
+            margin: 15px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="textbox">
+        <h2>Please enter a hexadecimal color code:</h2>
+        <input type="text" placeholder="#XXXXXX" id="colorcode">
+        <button id="btn">Submit</button>
+    </div>
+
+    <script>
+        const submitButton = document.getElementById('btn');
+
+        submitButton.addEventListener('click', function () {
+            const colorCodeInput = document.getElementById('colorcode');
+            const colorCode = colorCodeInput.value;
+            const isValid = executeColorCode(colorCode);
+
+            if (isValid) {
+                const colorCodeShow = document.createElement('p');
+                colorCodeShow.textContent = "Entered hexadecimal color is: " + colorCode;
+                document.body.appendChild(colorCodeShow);
+            } else {
+                alert("Invalid color code. Please follow the hexadecimal color code format.");
+            }
+        });
+
+        function executeColorCode(colorCode) {
+            const pattern = /^#[A-Fa-f0-9]{6}$/;
+            return pattern.test(colorCode);
+        }
+    </script>
+
+</body>
+
+</html>
+
